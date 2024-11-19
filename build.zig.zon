@@ -9,8 +9,8 @@
     },
     .dependencies = .{
         .cimgui = .{
-            .url = "https://github.com/cimgui/cimgui/archive/refs/tags/1.91.4.tar.gz",
-            .hash = "1220be5b165d8fb8fdb46e8c2fc21ba719a498d76484605d2b715e7976ea718343a9",
+            .url = "https://github.com/swan-www/cimgui/archive/refs/tags/1.91.4.zig.tar.gz",
+            .hash = "12206092b0cf4b2e295dc47781ba5042339532c9767a00d9206f8659a07446f0b7ee",
         },
         .imgui = .{
             .url = "https://github.com/ocornut/imgui/archive/refs/tags/v1.91.4.tar.gz",
