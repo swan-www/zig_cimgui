@@ -25,6 +25,10 @@ pub fn build(b: *std.Build) !void {
 
     translated_header.addIncludeDir(cimgui.path("").getPath(b));
     translated_header.addIncludeDir(imgui.path("").getPath(b));
+    if (target.result.os.tag == .windows) {
+        translated_header.defineCMacroRaw("_WINDOWS=");
+        translated_header.defineCMacroRaw("_WIN32=");
+    }
 
     const zimgui = translated_header.addModule("zimgui");
     zimgui.addCSourceFiles(.{
@@ -36,6 +40,10 @@ pub fn build(b: *std.Build) !void {
             "imgui_widgets.cpp",
             "imgui_tables.cpp",
         },
+        .flags = if(target.result.os.tag == .windows) &.{
+            "D_WINDOWS",
+            "D_WIN32"
+        } else &.{},
     });
 
     zimgui.addCSourceFiles(.{
@@ -43,6 +51,10 @@ pub fn build(b: *std.Build) !void {
         .files = &.{
             "cimgui.cpp"
         },
+        .flags = if(target.result.os.tag == .windows) &.{
+            "D_WINDOWS",
+            "D_WIN32"
+        } else &.{},
     });
 
     zimgui.addIncludePath(cimgui.path(""));
