@@ -28,6 +28,7 @@ pub fn build(b: *std.Build) !void {
     if (target.result.os.tag == .windows) {
         translated_header.defineCMacroRaw("_WINDOWS=");
         translated_header.defineCMacroRaw("_WIN32=");
+        translated_header.defineCMacroRaw("CIMGUI_DEFINE_ENUMS_AND_STRUCTS=");
     }
 
     const zimgui = translated_header.addModule("zimgui");
@@ -42,11 +43,6 @@ pub fn build(b: *std.Build) !void {
         },
         .flags = &.{},
     });
-
-    if (target.result.os.tag == .windows) {
-        zimgui.addCMacro("_WINDOWS", "");
-        zimgui.addCMacro("_WIN32", "");
-    }
 
     zimgui.addCSourceFiles(.{
         .root = cimgui.path(""),
