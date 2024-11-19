@@ -41,8 +41,8 @@ pub fn build(b: *std.Build) !void {
             "imgui_tables.cpp",
         },
         .flags = if(target.result.os.tag == .windows) &.{
-            "D_WINDOWS",
-            "D_WIN32"
+            "_WINDOWS",
+            "_WIN32"
         } else &.{},
     });
 
@@ -52,8 +52,8 @@ pub fn build(b: *std.Build) !void {
             "cimgui.cpp"
         },
         .flags = if(target.result.os.tag == .windows) &.{
-            "D_WINDOWS",
-            "D_WIN32"
+            "_WINDOWS",
+            "_WIN32"
         } else &.{},
     });
 
