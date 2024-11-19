@@ -52,4 +52,8 @@ pub fn build(b: *std.Build) !void {
     _ = b.addModule("cimgui_license", .{
         .root_source_file = imgui.path("LICENSE"),
     });
+
+    _ = b.addModule("imgui_include_path", .{
+        .root_source_file = imgui.path(""),
+    });
 }
