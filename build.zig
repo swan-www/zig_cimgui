@@ -45,6 +45,9 @@ pub fn build(b: *std.Build) !void {
         },
     });
 
+    zimgui.addIncludePath(cimgui.path(""));
+    zimgui.addIncludePath(imgui.path(""));
+
     _ = b.addModule("imgui_license", .{
         .root_source_file = imgui.path("LICENSE.txt"),
     });
