@@ -40,21 +40,20 @@ pub fn build(b: *std.Build) !void {
             "imgui_widgets.cpp",
             "imgui_tables.cpp",
         },
-        .flags = if(target.result.os.tag == .windows) &.{
-            "_WINDOWS",
-            "_WIN32"
-        } else &.{},
+        .flags = &.{},
     });
+
+    if (target.result.os.tag == .windows) {
+        zimgui.addCMacro("_WINDOWS", "");
+        zimgui.addCMacro("_WIN32", "");
+    }
 
     zimgui.addCSourceFiles(.{
         .root = cimgui.path(""),
         .files = &.{
             "cimgui.cpp"
         },
-        .flags = if(target.result.os.tag == .windows) &.{
-            "_WINDOWS",
-            "_WIN32"
-        } else &.{},
+        .flags = &.{},
     });
 
     zimgui.addIncludePath(cimgui.path(""));
