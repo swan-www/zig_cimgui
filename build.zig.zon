@@ -5,7 +5,7 @@
         "build.zig",
         "build.zig.zon",
         "aggregate.h",
-        "LICENCE",
+        "LICENSE",
     },
     .dependencies = .{
         .cimgui = .{
