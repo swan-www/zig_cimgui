@@ -28,9 +28,9 @@ pub fn build(b: *std.Build) !void {
     if (target.result.os.tag == .windows) {
         translated_header.defineCMacroRaw("_WINDOWS=");
         translated_header.defineCMacroRaw("_WIN32=");
-        translated_header.defineCMacroRaw("CIMGUI_DEFINE_ENUMS_AND_STRUCTS=");
-        translated_header.defineCMacroRaw("CIMGUI_USE_SDL3=");
     }
+    translated_header.defineCMacroRaw("CIMGUI_DEFINE_ENUMS_AND_STRUCTS=");
+    translated_header.defineCMacroRaw("CIMGUI_USE_SDL3=");
 
     const zimgui = translated_header.addModule("zimgui");
     zimgui.addCSourceFiles(.{
@@ -52,6 +52,8 @@ pub fn build(b: *std.Build) !void {
         },
         .flags = &.{},
     });
+
+    zimgui.addCMacro("CIMGUI_USE_SDL3", "");
 
     zimgui.addIncludePath(cimgui.path(""));
     zimgui.addIncludePath(imgui.path(""));
