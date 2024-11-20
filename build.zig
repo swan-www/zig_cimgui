@@ -51,6 +51,7 @@ pub fn build(b: *std.Build) !void {
         .root = imgui.path(""),
         .files = &.{
             "backends/imgui_impl_sdl3.cpp",
+            "backends/imgui_impl_sdlrenderer3.cpp",
         },
         .flags = &.{},
     });
