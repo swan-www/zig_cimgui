@@ -17,6 +17,8 @@ pub fn build(b: *std.Build) !void {
     const cimgui = b.dependency("cimgui", .{});
     const imgui = b.dependency("imgui", .{});
 
+    const sdl_include_paths = b.option([][]const u8, "sdl_include_paths", "An array of paths to use for sdl includes") orelse &.{};
+
     const translated_header = b.addTranslateC(.{
         .root_source_file = b.path("aggregate.h"),
         .target = target,
@@ -66,6 +68,10 @@ pub fn build(b: *std.Build) !void {
 
     zimgui.addIncludePath(cimgui.path(""));
     zimgui.addIncludePath(imgui.path(""));
+    for(sdl_include_paths) |inc_path|
+    {
+        zimgui.addIncludePath(.{ .cwd_relative = inc_path},);
+    }
 
     _ = b.addModule("imgui_license", .{
         .root_source_file = imgui.path("LICENSE.txt"),
