@@ -45,6 +45,15 @@ pub fn build(b: *std.Build) !void {
         .flags = &.{},
     });
 
+    //Add the SDL3 backend
+    zimgui.addCSourceFiles(.{
+        .root = imgui.path(""),
+        .files = &.{
+            "backends/imgui_impl_sdl3.cpp",
+        },
+        .flags = &.{},
+    });
+
     zimgui.addCSourceFiles(.{
         .root = cimgui.path(""),
         .files = &.{
