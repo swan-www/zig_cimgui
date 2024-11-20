@@ -14,10 +14,9 @@ pub fn build(b: *std.Build) !void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
-    const cimgui = b.dependency("cimgui", .{});
-    const imgui = b.dependency("imgui", .{});
-
-    const sdl_include_paths = b.option([][]const u8, "sdl_include_paths", "An array of paths to use for sdl includes") orelse &.{};
+    const cimgui = b.dependency("cimgui", .{ .target=target, .optimize=optimize,});
+    const imgui = b.dependency("imgui", .{ .target=target, .optimize=optimize,});
+    const zig_sdl = b.dependency("zig_sdl", .{ .target=target, .optimize=optimize,});
 
     const translated_header = b.addTranslateC(.{
         .root_source_file = b.path("aggregate.h"),
@@ -55,6 +54,8 @@ pub fn build(b: *std.Build) !void {
         },
         .flags = &.{},
     });
+    const sdl_lib = zig_sdl.artifact("sdl3");  
+    zimgui.linkLibrary(sdl_lib);
 
     zimgui.addCSourceFiles(.{
         .root = cimgui.path(""),
@@ -68,10 +69,6 @@ pub fn build(b: *std.Build) !void {
 
     zimgui.addIncludePath(cimgui.path(""));
     zimgui.addIncludePath(imgui.path(""));
-    for(sdl_include_paths) |inc_path|
-    {
-        zimgui.addIncludePath(.{ .cwd_relative = inc_path},);
-    }
 
     _ = b.addModule("imgui_license", .{
         .root_source_file = imgui.path("LICENSE.txt"),

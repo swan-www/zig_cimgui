@@ -16,5 +16,9 @@
             .url = "https://github.com/ocornut/imgui/archive/refs/tags/v1.91.5.tar.gz",
             .hash = "1220512426dabdf0ce930853a3fb52009eb7649f96150397a4670147499bbc8967ac",
         },
+        .zig_sdl = .{
+            .url = "https://github.com/swan-www/zig_sdl3/archive/refs/heads/main.zip",
+            .hash = "1220d9b0b5ffbe2bf3c4e0ea7b940200e939752c53aa1657a43a32434897efcbd8ec",
+        },
     },
 }
