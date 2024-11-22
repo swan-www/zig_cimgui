@@ -31,7 +31,7 @@ IMGUI_IMPL_EXTERN void     igImplSDLRenderer3_DestroyDeviceObjects();
 typedef struct
 {
     SDL_Renderer*       Renderer;
-} ImGui_ImplSDLRenderer3_RenderState;
+} igImplSDLRenderer3_RenderState;
 
 #ifdef _cplusplus
 }//extern "c" 
