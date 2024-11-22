@@ -5,6 +5,10 @@
         "build.zig",
         "build.zig.zon",
         "aggregate.h",
+        "imgui_impl_sdl3_c.cpp",
+        "imgui_impl_sdl3_c.h",
+        "imgui_impl_sdlrenderer3_c.cpp",
+        "imgui_impl_sdlrenderer3_c.h",
         "LICENSE",
     },
     .dependencies = .{
