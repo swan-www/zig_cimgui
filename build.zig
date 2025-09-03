@@ -29,8 +29,8 @@ pub fn build(b: *std.Build) !void {
         .optimize = optimize,
     });
 
-    translated_header.addIncludeDir(cimgui.path("").getPath(b));
-    translated_header.addIncludeDir(imgui.path("").getPath(b));
+    translated_header.addIncludePath(cimgui.path(""));
+    translated_header.addIncludePath(imgui.path(""));
     if (target.result.os.tag == .windows) {
         translated_header.defineCMacroRaw("_WINDOWS=");
         translated_header.defineCMacroRaw("_WIN32=");
@@ -40,10 +40,10 @@ pub fn build(b: *std.Build) !void {
     translated_header.defineCMacroRaw("IMGUI_DISABLE_OBSOLETE_FUNCTIONS=");
 
     _ = translated_header.addModule("zimgui");
-    const zimgui_lib = b.addStaticLibrary(.{
+    const zimgui_lib = b.addLibrary(.{
         .name = "zimgui_lib",
-        .target = target,
-        .optimize = optimize,
+        .root_module = b.createModule(.{ .target=target, .optimize=optimize, }),
+        .linkage = .static,
     });
     zimgui_lib.linkLibC();
     zimgui_lib.addCSourceFiles(.{
