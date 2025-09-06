@@ -46,6 +46,7 @@ pub fn build(b: *std.Build) !void {
         .optimize = optimize,
     });
 
+    translated_header.addIncludePath(b.path(""));
     translated_header.addIncludePath(cimgui.path(""));
     translated_header.addIncludePath(imgui.path(""));
     if (target.result.os.tag == .windows) {
@@ -84,6 +85,7 @@ pub fn build(b: *std.Build) !void {
 
     zimgui_lib.root_module.addCMacro("IMGUI_DISABLE_OBSOLETE_FUNCTIONS", "");
 
+    zimgui_lib.addIncludePath(b.path(""));
     zimgui_lib.addIncludePath(cimgui.path(""));
     zimgui_lib.addIncludePath(imgui.path(""));
     zimgui_lib.addIncludePath(imgui.path("backends"));
