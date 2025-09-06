@@ -15,12 +15,13 @@
     },
     .dependencies = .{
         .cimgui = .{
-            .url = "https://github.com/swan-www/cimgui/archive/refs/heads/master.zip",
-            .hash = "N-V-__8AAPj8QgBgkrDPSy4pXcR3gbpQQjOVMsl2egDZIG-G",
+            .url = "https://github.com/swan-www/cimgui/archive/refs/tags/1.92.1.1.zip",
+            .hash = "N-V-__8AAKMmNQDMIuoI1MXFA64rjNgQYGoyxhQ2d1z6rRqT",
+            //.path = "../cimgui",
         },
         .imgui = .{
-            .url = "https://github.com/ocornut/imgui/archive/refs/tags/v1.91.5.tar.gz",
-            .hash = "N-V-__8AAB7EZQBRJCbavfDOkwhTo_tSAJ63ZJ-WFQOXpGcB",
+            .url = "https://github.com/ocornut/imgui/archive/refs/tags/v1.92.1.tar.gz",
+            .hash = "N-V-__8AAIHObgBPY0oMCsq6aDf81kQQyss_QCXEs8NzaACB",
         },
     },
 }
