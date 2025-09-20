@@ -75,6 +75,7 @@ pub fn build(b: *std.Build) !void {
     {
         try prefixed_cimgui_flags.append(b.allocator, b.fmt("-D{s}", .{ cimgui_flag, }));
     }
+    //try prefixed_cimgui_flags.append(b.allocator, "-fno-ubsan-rt");
 
     zimgui_lib.addCSourceFiles(.{
         .files = &.{
@@ -84,6 +85,8 @@ pub fn build(b: *std.Build) !void {
     });
 
     zimgui_lib.root_module.addCMacro("IMGUI_DISABLE_OBSOLETE_FUNCTIONS", "");
+    zimgui_lib.root_module.sanitize_c = .off;
+    zimgui_lib.bundle_ubsan_rt = false;
 
     zimgui_lib.addIncludePath(b.path(""));
     zimgui_lib.addIncludePath(cimgui.path(""));
